@@ -25,13 +25,20 @@
         .post:hover img { transform: scale(1.05); }
         .post-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin-bottom: 10px; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; }
         .post:hover .post-overlay { opacity: 1; }
-        .modal { display: none; margin-top: -5px; margin-bottom: 20px; padding: 10px; background: #f8f8f8; border-radius: 5px; font-size: 13px; line-height: 1.4; }
+        .modal { display: none; margin-top: 10px; margin-bottom: 20px; padding: 10px; background: #f8f8f8; border-radius: 5px; font-size: 13px; line-height: 1.4; }
         .show-modal { display: block; }
         .tag { color: #00376b; cursor: pointer; }
         .tabs {display: flex; justify-content: center; border-top: 1px solid #efefef; border-bottom: 1px solid #efefef; margin-top: 10px;}
         .tab {flex: 1; text-align: center; padding: 12px 0; cursor: default;}
         .tab svg {opacity: 0.4;}
         .tab.active svg {opacity: 1;}
+        .post-detail { width:100%; max-width:360px; }
+        .post-image { position:relative; width:100%; aspect-ratio:1/1; background:#d8d8d8; border-radius:6px; overflow:hidden; }
+        .post-image::after { content:""; position:absolute; left:0; bottom:0; width:100%; height:45%; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%); }
+        .post-caption { position:absolute; bottom:10px; left:12px; right:12px; color:white; font-size:13px; z-index:2; }
+        .post-body { padding:12px 4px 0 4px; font-size:14px; line-height:1.5; }
+        .hashtag { color:#00376b; margin-right:6px; }
+        .comments { margin-top:10px; font-size:13px; }
     </style>
 </head>
 <body>
@@ -109,7 +116,7 @@
         </svg>
     </div>
 </div>
-
+            
             <div class="feed">
                 <!-- 게시물 1 -->
                 <div class="post" onclick="toggleModal('f-p1')">
@@ -130,16 +137,33 @@
 
             <!-- 게시물 상세 모달 -->
             <div id="f-p1" class="modal">
-                <b>[Recent Post 1]</b><br>
-                <img src="https://i.pinimg.com/564x/d1/23/45/d1234567890123456789012345678901.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
-                <b>사진:</b> 카페 테이블 위, 반쯤 먹다 남은 치즈케이크와 게임기가 놓여있다. 포크는 케이크에 꽂혀있고, 게임 화면엔 'GAME OVER'가 떠 있다.<br><br>
-                <b>본문:</b> 맨날 져놓고 또 하네. 포기 좀 하지.<br>
-                집중력은 좋은데 실력은 영.<br>
-                #나비잠 #단골손님 #VIP #치즈케이크<br><br>
-                <b>댓글:</b><br>
-                <span class="tag">@pray_sister</span>: 시끄러워요. 이번 판은 렉 걸려서 그런 거거든요.<br>
-                <span class="tag">@fafnir_coffee</span>: 핑계는 S급.
-            </div>
+            <div class="post-detail">
+
+                <!-- 이미지 영역 -->
+                <div class="post-image">
+                    <div class="post-caption">
+                        카페 테이블 위, 반쯤 먹다 남은 치즈케이크와 게임기가 놓여있다. 포크는 케이크에 꽂혀있고, 게임 화면엔 'GAME OVER'가 떠 있다.
+                    </div>
+                </div>
+
+                <!-- 본문 영역 -->
+                <div class="post-body">
+                    <b>f_afnir-444</b>
+                    맨날 져놓고 또 하네. 포기 좀 하지.<br>
+                    집중력은 좋은데 실력은 영.<br>
+                    <span class="hashtag">#나비잠</span>
+                    <span class="hashtag">#단골손님</span>
+                    <span class="hashtag">#VIP</span>
+                    <span class="hashtag">#치즈케이크</span>
+
+                    <div class="comments">
+                        <b>@pray_sister</b> 시끄러워요. 이번 판은 렉 걸려서 그런 거거든요.<br>
+                        <b>@fafnir_coffee</b> 핑계는 S급.
+                    </div>
+                </div>
+
+    </div>
+</div>
 
             <div id="f-p2" class="modal">
                 <b>[Recent Post 2]</b><br>
