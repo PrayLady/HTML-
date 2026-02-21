@@ -18,6 +18,11 @@
         .highlights { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
         .highlight-item { display: flex; flex-direction: column; align-items: center; min-width: 60px; cursor: pointer; }
         .highlight-img { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #dbdbdb; padding: 2px; object-fit: cover; margin-bottom: 5px; }
+
+        .color-1 { background:#c9d6ff; }
+        .color-2 { background:#ffd6e0; }
+        .color-3 { background:#d4f5d4; }
+        
         .highlight-title { font-size: 12px; }
         .feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .post { position: relative; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; }
@@ -33,11 +38,11 @@
         .tab svg {opacity: 0.4;}
         .tab.active svg {opacity: 1;}
         .post-detail { width:100%; max-width:360px; }
-        .post-image { position:relative; width:100%; aspect-ratio:1/1; background:#d8d8d8; border-radius:6px; overflow:hidden; }
+        .post-image { position:relative; width:100%; aspect-ratio:1/1; border-radius:6px; overflow:hidden; }
         .post-image::after { content:""; position:absolute; left:0; bottom:0; width:100%; height:45%; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%); }
         .post-caption { position:absolute; bottom:10px; left:12px; right:12px; color:white; font-size:13px; z-index:2; }
         .post-body { padding:12px 4px 0 4px; font-size:14px; line-height:1.5; }
-        .hashtag { color:#00376b; margin-right:6px; }
+        .hashtag { color:#00376b; margin-right:2px; }
         .comments { margin-top:10px; font-size:13px; }
     </style>
 </head>
@@ -119,18 +124,15 @@
             
             <div class="feed">
                 <!-- 게시물 1 -->
-                <div class="post" onclick="toggleModal('f-p1')">
-                    <img src="https://i.pinimg.com/564x/d1/23/45/d1234567890123456789012345678901.jpg">
+                <div class="post color-1" onclick="toggleModal('f-p1')">
                     <div class="post-overlay">♥ 89</div>
                 </div>
                 <!-- 게시물 2 -->
-                <div class="post" onclick="toggleModal('f-p2')">
-                    <img src="https://i.pinimg.com/564x/e2/34/56/e2345678901234567890123456789012.jpg">
+                <div class="post color-2" onclick="toggleModal('f-p2')">
                     <div class="post-overlay">♥ 102</div>
                 </div>
                 <!-- 게시물 3 -->
-                <div class="post" onclick="toggleModal('f-p3')">
-                    <img src="https://i.pinimg.com/564x/f3/45/67/f3456789012345678901234567890123.jpg">
+                <div class="post color-3" onclick="toggleModal('f-p3')">
                     <div class="post-overlay">♥ 115</div>
                 </div>
             </div>
@@ -140,7 +142,7 @@
             <div class="post-detail">
 
                 <!-- 이미지 영역 -->
-                <div class="post-image">
+                <div class="post-image color-1">
                     <div class="post-caption">
                         카페 테이블 위, 반쯤 먹다 남은 치즈케이크와 게임기가 놓여있다. 포크는 케이크에 꽂혀있고, 게임 화면엔 'GAME OVER'가 떠 있다.
                     </div>
@@ -162,32 +164,48 @@
                     </div>
                 </div>
 
-    </div>
-</div>
+            </div>
+            </div>
 
             <div id="f-p2" class="modal">
-                <b>[Recent Post 2]</b><br>
-                <img src="https://i.pinimg.com/564x/e2/34/56/e2345678901234567890123456789012.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
-                <b>사진:</b> 흑백 필터. 파프니르의 셔츠 깃을 꽉 쥐고 있는 작은 손 클로즈업. 손목에는 AIN 센터의 인식 팔찌가 보인다. 핏줄이 도드라진 파프니르의 손이 그 위를 덮고 있다.<br><br>
-                <b>본문:</b> 놔주기 싫은 건지, 잡고 싶은 건지.<br>
-                둘 다면 좋겠는데.<br>
-                #가이딩 #접촉 #불면증치료제<br><br>
-                <b>댓글:</b><br>
-                <span class="tag">@pray_sister</span>: 놔준다고 했잖아요. 10분만이라면서.<br>
-                <span class="tag">@fafnir_coffee</span>: 시계가 고장 났나 봐.
+            <div class="post-detail">
+
+                <!-- 이미지 영역 -->
+                <div class="post-image color-2">
+                    <div class="post-caption">
+                        흑백 필터. 파프니르의 셔츠 깃을 꽉 쥐고 있는 작은 손 클로즈업. 손목에는 AIN 센터의 인식 팔찌가 보인다. 핏줄이 도드라진 파프니르의 손이 그 위를 덮고 있다.
+                    </div>
+                </div>
+
+                <!-- 본문 영역 -->
+                <div class="post-body">
+                    <b>f_afnir-444</b>
+                    놔주기 싫은 건지, 잡고 싶은 건지.<br>둘 다면 좋겠는데.<br>
+                    
+                    <span class="hashtag">#가이딩</span>
+                    <span class="hashtag">#접촉</span>
+                    <span class="hashtag">#불면증치료제</span>
+
+                    <div class="comments">
+                        <b>@pray_sister</b> 놔준다고 했잖아요. 10분만이랬으면서.<br>
+                        <b>@fafnir_coffee</b> 시계가 고장 났나 봐.
+                    </div>
+                </div>
+
+            </div>
             </div>
 
             <div id="f-p3" class="modal">
-                <b>[Recent Post 3]</b><br>
+            <div class="post-detail">
 
-<img src="https://i.pinimg.com/564x/f3/45/67/f3456789012345678901234567890123.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
-                <b>사진:</b> 투명한 유리잔에 담긴 노란색 꿀물. 그 옆에 '우유 X'라고 빨간 매직으로 크게 적힌 포스트잇이 붙어있다. 배경으로 살짝 찡그린 프레이의 얼굴이 흐릿하게 보인다.<br><br>
-                <b>본문:</b> 키 안 크는 이유 발견.<br>
-                우유 못 먹는 S급이라니.<br>
-                #편식쟁이 #꿀물 #어린이입맛<br><br>
-                <b>댓글:</b><br>
-                <span class="tag">@pray_sister</span>: 죽을래요 진짜?<br>
-                <span class="tag">@fafnir_coffee</span>: 사실이잖아. 팩폭이 아픈 법이지.
+                <!-- 이미지 영역 -->
+                <div class="post-image color-2">
+                    <div class="post-caption">
+                        파프니르와 프레이의 손 크기 차이를 찍은 사진. 파프니르의 큰 손이 프레이의 손을 완전히 덮고 깍지 낀 상태.
+                    </div>
+                </div>
+
+            </div>
             </div>
             
         </div>
