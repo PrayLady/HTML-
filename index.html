@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Lovestagram</title>
+    <style>
+        body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background-color: #fafafa; color: #262626; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { display: flex; gap: 40px; max-width: 900px; width: 100%; }
+        .profile-card { background: white; border: 1px solid #dbdbdb; border-radius: 3px; width: 400px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header { display: flex; align-items: center; margin-bottom: 20px; }
+        .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-right: 20px; border: 1px solid #dbdbdb; }
+        .info { flex: 1; }
+        .username { font-weight: 600; font-size: 18px; margin-bottom: 5px; }
+        .name { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+        .bio { font-size: 14px; line-height: 1.4; white-space: pre-line; margin-bottom: 10px; }
+        .link { color: #00376b; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .stats { display: flex; gap: 20px; font-size: 14px; margin-bottom: 15px; border-top: 1px solid #efefef; padding-top: 15px; }
+        .highlights { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
+        .highlight-item { display: flex; flex-direction: column; align-items: center; min-width: 60px; cursor: pointer; }
+        .highlight-img { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #dbdbdb; padding: 2px; object-fit: cover; margin-bottom: 5px; }
+        .highlight-title { font-size: 12px; }
+        .feed { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+        .post { position: relative; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; }
+        .post img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .post:hover img { transform: scale(1.05); }
+        .post-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; }
+        .post:hover .post-overlay { opacity: 1; }
+        .modal { display: none; margin-top: 10px; padding: 10px; background: #f8f8f8; border-radius: 5px; font-size: 13px; line-height: 1.4; }
+        .show-modal { display: block; }
+        .tag { color: #00376b; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 파프니르 프로필 -->
+        <div class="profile-card">
+            <div class="header">
+                <img src="https://image.rocketnc.com/bi/2019/12/30/1722/71e06963-3f11-40be-afa4-c7e6c92d53e3.jpg" class="profile-pic" alt="Fafnir Profile">
+                <div class="info">
+                    <div class="username">fafnir_coffee 🔒</div>
+                    <div class="name">최시헌 (Fafnir)</div>
+                    <div class="bio">AIN Center 1F '나비잠'
+Coffee & Nap.
+DM X. 예약 문의 X.
+영업시간 : 내 맘대로.
+                    </div>
+                    <a href="#" class="link">ain.center/guide/fafnir</a>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div>게시물 <b>34</b></div>
+                <div>팔로워 <b>128</b></div> <!-- 소수정예 -->
+                <div>팔로우 <b>1</b></div> <!-- 오직 프레이만 -->
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-item" onclick="toggleModal('f-h1')">
+                    <img src="https://i.pinimg.com/564x/a4/09/56/a40956461d3615456209581898565555.jpg" class="highlight-img">
+                    <div class="highlight-title">고양이</div>
+                </div>
+                <!-- 하이라이트 내용 모달 -->
+                <div id="f-h1" class="modal">
+                    <b>[Story Highlight: 고양이]</b><br>
+                    1. 카페 창가에 앉아 꾸벅꾸벅 조는 프레이의 뒷모습. (텍스트: 길고양이 출몰.)<br>
+                    2. 프레이가 덮고 있던 담요만 덩그러니 남은 의자. (텍스트: 밥 먹고 도망감.)<br>
+                    3. 프레이가 남기고 컵 홀더에 그려진 낙서. (텍스트: 영역 표시.)
+                </div>
+
+                <div class="highlight-item" onclick="toggleModal('f-h2')">
+                    <img src="https://i.pinimg.com/564x/2b/43/89/2b438914580665965451515151515151.jpg" class="highlight-img">
+                    <div class="highlight-title">Sleep</div>
+                </div>
+                <div id="f-h2" class="modal">
+                    <b>[Story Highlight: Sleep]</b><br>
+                    1. 멈춘 회중시계와 수면제 빈 통. (텍스트: 의미 없음.)<br>
+                    2. 어둑한 방, 침대 한 쪽에 웅크려 잠든 프레이의 형체. (텍스트: 이건 의미 있음.)<br>
+                    3. 아침 햇살, 프레이의 손을 잡고 있는 파프니르의 손. (텍스트: 7시간.)
+                </div>
+                
+                <div class="highlight-item" onclick="toggleModal('f-h3')">
+                    <img src="https://i.pinimg.com/564x/c7/2b/12/c72b1234567890123456789012345678.jpg" class="highlight-img">
+                    <div class="highlight-title">Menu?</div>
+                </div>
+                <div id="f-h3" class="modal">
+                    <b>[Story Highlight: Menu?]</b><br>
+                    1. '초코 원두 우유 물'. 복잡하게 적힌 주문서. (텍스트: 핫초코라니까.)<br>
+                    2. 딸기 셰이크 잔에 꽂힌 빨대 두 개. (텍스트: 씨앗 박힌 붉은 과일.)<br>
+                    3. 비워진 꿀물 잔. (텍스트: 우유 못 먹는대. 키 안 크는 이유.)
+                </div>
+            </div>
+
+            <div class="feed">
+                <!-- 게시물 1 -->
+                <div class="post" onclick="toggleModal('f-p1')">
+                    <img src="https://i.pinimg.com/564x/d1/23/45/d1234567890123456789012345678901.jpg">
+                    <div class="post-overlay">♥ 89</div>
+                </div>
+                <!-- 게시물 2 -->
+                <div class="post" onclick="toggleModal('f-p2')">
+                    <img src="https://i.pinimg.com/564x/e2/34/56/e2345678901234567890123456789012.jpg">
+                    <div class="post-overlay">♥ 102</div>
+                </div>
+                <!-- 게시물 3 -->
+                <div class="post" onclick="toggleModal('f-p3')">
+                    <img src="https://i.pinimg.com/564x/f3/45/67/f3456789012345678901234567890123.jpg">
+                    <div class="post-overlay">♥ 115</div>
+                </div>
+            </div>
+
+            <!-- 게시물 상세 모달 -->
+            <div id="f-p1" class="modal">
+                <b>[Recent Post 1]</b><br>
+                <img src="https://i.pinimg.com/564x/d1/23/45/d1234567890123456789012345678901.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 카페 테이블 위, 반쯤 먹다 남은 치즈케이크와 게임기가 놓여있다. 포크는 케이크에 꽂혀있고, 게임 화면엔 'GAME OVER'가 떠 있다.<br><br>
+                <b>본문:</b> 맨날 져놓고 또 하네. 포기 좀 하지.<br>
+                집중력은 좋은데 실력은 영.<br>
+                #나비잠 #단골손님 #VIP #치즈케이크<br><br>
+                <b>댓글:</b><br>
+                <span class="tag">@pray_sister</span>: 시끄러워요. 이번 판은 렉 걸려서 그런 거거든요.<br>
+                <span class="tag">@fafnir_coffee</span>: 핑계는 S급.
+            </div>
+
+            <div id="f-p2" class="modal">
+                <b>[Recent Post 2]</b><br>
+                <img src="https://i.pinimg.com/564x/e2/34/56/e2345678901234567890123456789012.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 흑백 필터. 파프니르의 셔츠 깃을 꽉 쥐고 있는 작은 손 클로즈업. 손목에는 AIN 센터의 인식 팔찌가 보인다. 핏줄이 도드라진 파프니르의 손이 그 위를 덮고 있다.<br><br>
+                <b>본문:</b> 놔주기 싫은 건지, 잡고 싶은 건지.<br>
+                둘 다면 좋겠는데.<br>
+                #가이딩 #접촉 #불면증치료제<br><br>
+                <b>댓글:</b><br>
+                <span class="tag">@pray_sister</span>: 놔준다고 했잖아요. 10분만이라면서.<br>
+                <span class="tag">@fafnir_coffee</span>: 시계가 고장 났나 봐.
+            </div>
+
+            <div id="f-p3" class="modal">
+                <b>[Recent Post 3]</b><br>
+
+<img src="https://i.pinimg.com/564x/f3/45/67/f3456789012345678901234567890123.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 투명한 유리잔에 담긴 노란색 꿀물. 그 옆에 '우유 X'라고 빨간 매직으로 크게 적힌 포스트잇이 붙어있다. 배경으로 살짝 찡그린 프레이의 얼굴이 흐릿하게 보인다.<br><br>
+                <b>본문:</b> 키 안 크는 이유 발견.<br>
+                우유 못 먹는 S급이라니.<br>
+                #편식쟁이 #꿀물 #어린이입맛<br><br>
+                <b>댓글:</b><br>
+                <span class="tag">@pray_sister</span>: 죽을래요 진짜?<br>
+                <span class="tag">@fafnir_coffee</span>: 사실이잖아. 팩폭이 아픈 법이지.
+            </div>
+            
+        </div>
+
+        <!-- 프레이 프로필 (가상) -->
+        <div class="profile-card">
+            <div class="header">
+                <img src="https://i.pinimg.com/564x/1a/2b/3c/1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p.jpg" class="profile-pic" alt="Pray Profile"> <!-- 가상의 프레이 프로필 사진 -->
+                <div class="info">
+                    <div class="username">pray_sister</div>
+                    <div class="name">프레이 (Sister)</div>
+                    <div class="bio">AIN Center Medical Team.
+Healer.
+Game & Sleep.
+DM 안 봄.
+                    </div>
+                </div>
+            </div>
+            
+           <div class="stats">
+                <div>게시물 <b>12</b></div>
+                <div>팔로워 <b>340</b></div>
+                <div>팔로우 <b>5</b></div>
+            </div>
+
+            <div class="highlights">
+                <div class="highlight-item" onclick="toggleModal('p-h1')">
+                    <img src="https://i.pinimg.com/564x/9z/8y/7x/9z8y7x6w5v4u3t2s1r0q.jpg" class="highlight-img">
+                    <div class="highlight-title">Game</div>
+                </div>
+                <div id="p-h1" class="modal">
+                    <b>[Story Highlight: Game]</b><br>
+                    1. 게임기 화면, 'Boss Clear' 문구. (텍스트: 드디어 깼다.)<br>
+                    2. 새로운 게임팩 사진. (텍스트: 신작 겟.)<br>
+                    3. 의료실 침대 위 널브러진 게임기들. (텍스트: 휴식 시간.)
+                </div>
+
+
+                 <div class="highlight-item" onclick="toggleModal('p-h2')">
+                    <img src="https://i.pinimg.com/564x/4l/5k/6j/4l5k6j7h8g9f0d1s2a3.jpg" class="highlight-img">
+                    <div class="highlight-title">Coffee?</div>
+                </div>
+                <div id="p-h2" class="modal">
+                    <b>[Story Highlight: Coffee?]</b><br>
+                    1. '나비잠' 카페 간판. (텍스트: 귀찮지만 가야 함.)<br>
+                    2. 딸기 스무디 사진. (텍스트: 맛있긴 하네.)<br>
+                    3. 파프니르가 커피 내리는 뒷모습. (텍스트: 졸려 보임.)
+                </div>
+            </div>
+
+            <div class="feed">
+                <!-- 게시물 1 -->
+                <div class="post" onclick="toggleModal('p-p1')">
+                     <img src="https://i.pinimg.com/564x/5m/4n/3b/5m4n3b2v1c0x9z8l7k6j.jpg">
+                    <div class="post-overlay">♥ 230</div>
+                </div>
+                 <!-- 게시물 2 -->
+                <div class="post" onclick="toggleModal('p-p2')">
+                    <img src="https://i.pinimg.com/564x/6b/7n/8m/6b7n8m9,0.jpg">
+                    <div class="post-overlay">♥ 189</div>
+                </div>
+                 <!-- 게시물 3 -->
+                  <div class="post" onclick="toggleModal('p-p3')">
+                    <img src="https://i.pinimg.com/564x/7v/8c/9x/7v8c9x0z1a2s3d4f5g.jpg">
+                    <div class="post-overlay">♥ 255</div>
+                </div>
+
+
+            </div>
+
+             <!-- 게시물 상세 모달 -->
+            <div id="p-p1" class="modal">
+                <b>[Recent Post 1]</b><br>
+                 <img src="https://i.pinimg.com/564x/5m/4n/3b/5m4n3b2v1c0x9z8l7k6j.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 의료실 창밖 풍경. 비가 추적추적 내리고 있다.<br><br>
+                <b>본문:</b> 비 오는 날은 싫다. 축 처지고.<br>
+                잠이나 자야지.<br>
+                 #비 #우울 #퇴근하고싶다<br><br>
+                <b>댓글:</b><br>
+                <span class="tag">@fafnir_coffee</span>: 우산 없으면 데리러 가고.
+            </div>
+
+            <div id="p-p2" class="modal">
+                <b>[Recent Post 2]</b><br>
+                <img src="https://i.pinimg.com/564x/6b/7n/8m/6b7n8m9,0.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 파프니르의 손이 들고 있는 낡은 회중시계. 초점이 시계에 맞춰져 있고 배경은 카페 내부다.<br><br>
+                <b>본문:</b> 맨날 멈춰있는 시계.<br>
+                고장 난 거면 좀 고치던지.<br>
+                #나비잠 #골동품<br><br>
+                <b>댓글:</b><br>
+                 <span class="tag">@fafnir_coffee</span>: 고칠 이유가 없어서. 너 올 때만 흐르니까.
+            </div>
+
+             <div id="p-p3" class="modal">
+                <b>[Recent Post 3]</b><br>
+                <img src="https://i.pinimg.com/564x/7v/8c/9x/7v8c9x0z1a2s3d4f5g.jpg" style="width:100px; height:100px; float:left; margin-right:10px;">
+                <b>사진:</b> 이불 밖으로 삐져나온 맨발 하나. 발목에 얇은 발찌가 걸려있다.<br><br>
+                <b>본문:</b> 낮잠 10분 컷.<br>
+                더 자면 밤에 못 자니까.<br>
+                #파워냅 #충전완료<br><br>
+                <b>댓글:</b><br>
+                <span class="tag">@fafnir_coffee</span>: 10분 넘었는데. 한참.
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(id) {
+            var modal = document.getElementById(id);
+            if (modal.style.display === "block") {
+                modal.style.display = "none";
+            } else {
+                var modals = document.getElementsByClassName("modal");
+                for (var i = 0; i < modals.length; i++) {
+                    modals[i].style.display = "none";
+                }
+                modal.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
