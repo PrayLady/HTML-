@@ -25,9 +25,13 @@
         .post:hover img { transform: scale(1.05); }
         .post-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; }
         .post:hover .post-overlay { opacity: 1; }
-        .modal { display: none; margin-top: 10px; margin-bottom: 20px; padding: 10px; background: #f8f8f8; border-radius: 5px; font-size: 13px; line-height: 1.4; }
+        .modal { display: none; margin-top: -5px; margin-bottom: 20px; padding: 10px; background: #f8f8f8; border-radius: 5px; font-size: 13px; line-height: 1.4; }
         .show-modal { display: block; }
         .tag { color: #00376b; cursor: pointer; }
+        .tabs {display: flex; justify-content: center; border-top: 1px solid #efefef; border-bottom: 1px solid #efefef; margin-top: 10px;}
+        .tab {flex: 1; text-align: center; padding: 12px 0; cursor: default;}
+        .tab svg {opacity: 0.4;}
+        .tab.active svg {opacity: 1;}
     </style>
 </head>
 <body>
@@ -106,6 +110,23 @@
                 </div>
             </div>
 
+            <div class="tabs">
+    <div class="tab active">
+        <!-- 게시물 아이콘 -->
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" stroke="black" fill="none" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" stroke="black" fill="none" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" stroke="black" fill="none" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" stroke="black" fill="none" stroke-width="2"/>
+        </svg>
+    </div>
+    <div class="tab">
+        <!-- 태그 아이콘 -->
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M20 12l-8 8-8-8 8-8 8 8z" stroke="#8e8e8e" fill="none" stroke-width="2"/>
+        </svg>
+    </div>
+</div>
             <!-- 게시물 상세 모달 -->
             <div id="f-p1" class="modal">
                 <b>[Recent Post 1]</b><br>
