@@ -10,9 +10,9 @@
         .header { display: flex; align-items: center; margin-bottom: 20px; }
         .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-right: 20px; border: 1px solid #dbdbdb; }
         .info { flex: 1; }
-        .username { font-weight: 600; font-size: 18px; margin-bottom: 5px; }
-        .name { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
-        .bio { font-size: 14px; line-height: 1.4; white-space: pre-line; margin-bottom: 10px; }
+        .username { margin: 0; font-size: 24px; font-weight: bold; }
+        .name { margin: 5px 0; color: #8e8e8e; }
+        .bio { margin: 0; font-size: 14px; line-height: 1.4; white-space: pre-line; margin-bottom: 10px; }
         .link { color: #00376b; text-decoration: none; font-weight: 600; font-size: 14px; }
         .stats { display: flex; gap: 20px; font-size: 14px; margin-bottom: 15px; border-top: 1px solid #efefef; padding-top: 15px; }
         .highlights { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; }
@@ -39,7 +39,7 @@
         .tab.active svg {opacity: 1;}
         .post-detail { width:100%; max-width:360px; }
         .post-image { position:relative; width:100%; aspect-ratio:1/1; border-radius:6px; overflow:hidden; }
-        .post-image::after { content:""; position:absolute; left:0; bottom:0; width:100%; height:45%; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%); }
+        .post-image::after { content:""; position:absolute; left:0; bottom:0; width:100%; height:45%; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%); }
         .post-caption { position:absolute; bottom:10px; left:12px; right:12px; color:white; font-size:13px; z-index:2; }
         .post-body { padding:12px 4px 0 4px; font-size:14px; line-height:1.5; }
         .hashtag { color:#00376b; margin-right:2px; }
@@ -51,13 +51,13 @@
         <!-- 파프니르 프로필 -->
         <div class="profile-card">
             <div class="header">
-                <img src="https://image.rocketnc.com/bi/2019/12/30/1722/71e06963-3f11-40be-afa4-c7e6c92d53e3.jpg" class="profile-pic" alt="Fafnir Profile">
+                <img src="https://pbs.twimg.com/media/HBaxI35bAAAXDcW?format=jpg&name=240x240" class="profile-pic" alt="프로필 사진">
                 <div class="info">
                     <div class="username">f_afnir-444 🔒</div>
-                    <div class="name">최시헌 (Fafnir)</div>
+                    <div class="name">최시헌</div>
                     <div class="bio">AIN 중앙 관제센터 1F '나비잠' Onwer<br>☕️Coffee & Nap<br>귀찮으니까 DM X. 예약 X. 오면 줌.
                     </div>
-                    <a href="#" class="link">ain.center/guide/fafnir</a>
+                    <a href="#" class="link">ain.center/navizam</a>
                 </div>
             </div>
             
@@ -68,20 +68,24 @@
             </div>
 
             <div class="highlights">
-                <div class="highlight-item" onclick="toggleModal('f-h1')">
-                    <img src="https://i.pinimg.com/564x/a4/09/56/a40956461d3615456209581898565555.jpg" class="highlight-img">
-                    <div class="highlight-title">Today</div>
-                </div>
+                <div style="margin-right: 15px; text-align: center;" onclick="toggleModal('f-h1')">
+                   <div style="width: 60px; height: 60px; border-radius: 50%; background-color: #EFEFEF; border: 2px solid #DBDBDB; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                   <span style="font-size: 24px;">☕</span>
+      </div>
+      <p style="margin: 5px 0; font-size: 12px;">Today</p>
+    </div>
 
-                <div class="highlight-item" onclick="toggleModal('f-h2')">
-                    <img src="https://i.pinimg.com/564x/2b/43/89/2b438914580665965451515151515151.jpg" class="highlight-img">
-                    <div class="highlight-title">Cat?</div>
-                </div>
+                <div style="margin-right: 15px; text-align: center;" onclick="toggleModal('f-h2')">
+                   <div style="width: 60px; height: 60px; border-radius: 50%; background-color: #EFEFEF; border: 2px solid #DBDBDB; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                   <span style="font-size: 24px;">😼</span>
+      </div>
+      <p style="margin: 5px 0; font-size: 12px;">Cat?</p>
                 
-                <div class="highlight-item" onclick="toggleModal('f-h3')">
-                    <img src="https://i.pinimg.com/564x/c7/2b/12/c72b1234567890123456789012345678.jpg" class="highlight-img">
-                    <div class="highlight-title">Nap</div>
-                </div>
+                <div style="margin-right: 15px; text-align: center;" onclick="toggleModal('f-h3')">
+                   <div style="width: 60px; height: 60px; border-radius: 50%; background-color: #EFEFEF; border: 2px solid #DBDBDB; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                   <span style="font-size: 24px;">💤</span>
+      </div>
+      <p style="margin: 5px 0; font-size: 12px;">Nap</p>
             </div>
 
                             <!-- 하이라이트 내용 모달 -->
